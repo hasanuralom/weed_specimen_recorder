@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Upload weed specimen photographs and generate formatted Word documents for agriculture practicals." />
+    <title>Weed Specimen Recorder — Agriculture Practical Tool</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+</head>
+
+<body>
+
+    <!-- ═══ Header ═══ -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <div class="header-icon">🌿</div>
+                <div>
+                    <div class="header-title">Weed Specimen Recorder</div>
+                    <div class="header-subtitle">Agriculture Practical — Upload & Generate Word File</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="btnSave">
+                    <span class="btn-icon">💾</span> Save Project
+                </button>
+                <button class="btn btn-secondary" id="btnLoad">
+                    <span class="btn-icon">📂</span> Load Project
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ Main Content ═══ -->
+    <main class="main-container">
+
+        <!-- Upload Zone -->
+        <section class="upload-section">
+            <h2 class="section-title"><span class="icon">📷</span> Upload Specimen Images</h2>
+            <div class="upload-zone" id="uploadZone">
+                <span class="upload-icon">🌱</span>
+                <div class="upload-text">Drag & drop your weed images here</div>
+                <div class="upload-subtext">
+                    or <a>click to browse files</a> — supports JPG, PNG, BMP, WebP (60+ images supported)
+                </div>
+                <input type="file" id="fileInput" accept="image/*" multiple hidden />
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div>
+                    <div class="stat-value" id="statTotal">0</div>
+                    <div class="stat-label">Total Specimens</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✏️</div>
+                <div>
+                    <div class="stat-value" id="statFilled">0</div>
+                    <div class="stat-label">Details Filled</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏷️</div>
+                <div>
+                    <div class="stat-value" id="statTypes">0</div>
+                    <div class="stat-label">Unique Types</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar" id="toolbar">
+            <div class="toolbar-left">
+                <input class="title-input" type="text" id="docTitle" value="Weed Specimen Record"
+                    placeholder="Document title..." />
+                <label style="font-size:13px;color:var(--text-secondary);font-weight:600;">
+                    Columns per row:
+                </label>
+                <select class="cols-select" id="colsPerRow">
+                    <option value="2">2 per row</option>
+                    <option value="3" selected>3 per row</option>
+                    <option value="4">4 per row</option>
+                </select>
+            </div>
+            <div class="toolbar-right">
+                <button class="btn btn-success btn-lg" id="btnGenerate">
+                    <span class="btn-icon">📝</span> Generate Word File
+                </button>
+                <button class="btn btn-danger" id="btnClear">
+                    <span class="btn-icon">🗑️</span> Clear All
+                </button>
+            </div>
+        </div>
+
+        <!-- Specimens Grid -->
+        <div class="specimens-grid" id="specimensGrid"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <div class="icon">🌾</div>
+            <h3>No specimens yet</h3>
+            <p>Upload weed photographs to get started. You can add 60+ images at once!</p>
+        </div>
+
+    </main>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="app-footer">
+        🌿 Weed Specimen Recorder — Built for Agriculture Students
+    </footer>
+
+    <!-- ═══ Progress Overlay ═══ -->
+    <div class="progress-overlay" id="progressOverlay">
+        <div class="progress-card">
+            <div class="spinner"></div>
+            <div class="progress-text" id="progressText">Processing...</div>
+            <div class="progress-subtext">Please wait while we process your request</div>
+        </div>
+    </div>
+
+    <!-- ═══ Toast Container ═══ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>
